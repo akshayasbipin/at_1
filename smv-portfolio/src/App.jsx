@@ -742,7 +742,7 @@ function ConnectSection() {
     // { icon:'ti-brand-github', label:'GitHub', sub:'akshayasbipin', url:'https://github.com/akshayasbipin' },
     // { icon:'ti-brand-linkedin', label:'LinkedIn', sub:'Akshaya S Bipin', url:'https://www.linkedin.com/in/akshaya-s-bipin/' },
     { icon:'ti-external-link', label:'Canva Portfolio', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' },
-    { icon:'ti-brand-canva', label:'Designs', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' }, // TODO: Add Google drive link to design folder
+    // { icon:'ti-brand-canva', label:'Designs', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' }, // TODO: Add Google drive link to design folder
     // { icon:'ti-writing', label:'Blog on Wix', sub:'shymilkshakevoid blog', url:'https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog' },
     // { icon:'ti-code', label:'LeetCode', sub:'21wh1a0513', url:'https://leetcode.com/u/21wh1a0513/' },
   ]
