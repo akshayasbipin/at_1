@@ -3,6 +3,10 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { BLOG_POSTS } from './blog/posts'
+import photoUrl from './assets/photo.jpg'
+import photoUrl2 from './assets/photo2.jpeg'
+import photoUrl3 from './assets/photo3.jpeg'
+import photoUrl4 from './assets/photo4.jpeg'
 
 // ─── DATA ─────────────────────────────────────────────────────────────
 const NAV_ITEMS = [
@@ -210,9 +214,6 @@ function HomeSection({ setActive, setSelectedBlogId }) {
             <a className="social-icon-link" href="https://www.instagram.com/shy_milkshake_void/" target="_blank" rel="noreferrer">
               <i className="ti ti-brand-instagram" /> @shy_milkshake_void
             </a>
-            <a className="social-icon-link" href="https://github.com/akshayasbipin" target="_blank" rel="noreferrer">
-              <i className="ti ti-brand-github" /> akshayasbipin
-            </a>
           </div>
         </div>
         <div className="hero-right">
@@ -221,10 +222,10 @@ function HomeSection({ setActive, setSelectedBlogId }) {
           <span className="hero-doodle" style={{ top:'45%', left:'5%', animationDelay:'-.8s', fontSize:'1.6rem' }}>✦</span>
           <div className="hero-photo-grid">
             {/* Replace these with <img src="./your-image.jpg"> inside each .photo-tile */}
-            <div className="photo-tile"><span className="tile-icon">🖼</span><span>add your art</span></div>
-            <div className="photo-tile"><span className="tile-icon">🌸</span><span>add photo</span></div>
-            <div className="photo-tile"><span className="tile-icon">🎨</span><span>doodle here</span></div>
-            <div className="photo-tile"><span className="tile-icon">📷</span><span>add photo</span></div>
+            <div className="photo-tile"><img src={photoUrl} alt="Us💕"/></div>
+            <div className="photo-tile"><img src={photoUrl2} alt="GalleryDump✨"/></div>
+            <div className="photo-tile"><img src={photoUrl3} alt="GalleryDump📷"/></div>
+            <div className="photo-tile"><img src={photoUrl4} alt="GalleryDump🪨"/></div>
           </div>
         </div>
       </section>
@@ -807,12 +808,9 @@ function ConnectSection() {
   useReveal()
   const links = [
     { icon:'ti-brand-instagram', label:'Instagram', sub:'@shy_milkshake_void', url:'https://www.instagram.com/shy_milkshake_void/' },
-    // { icon:'ti-brand-github', label:'GitHub', sub:'akshayasbipin', url:'https://github.com/akshayasbipin' },
-    // { icon:'ti-brand-linkedin', label:'LinkedIn', sub:'Akshaya S Bipin', url:'https://www.linkedin.com/in/akshaya-s-bipin/' },
     { icon:'ti-external-link', label:'Canva Portfolio', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' },
     // { icon:'ti-brand-canva', label:'Designs', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' }, // TODO: Add Google drive link to design folder
     // { icon:'ti-writing', label:'Blog on Wix', sub:'shymilkshakevoid blog', url:'https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog' },
-    // { icon:'ti-code', label:'LeetCode', sub:'21wh1a0513', url:'https://leetcode.com/u/21wh1a0513/' },
   ]
   return (
     <div className="connect-section">
@@ -894,7 +892,6 @@ export default function App() {
           {' · '}
           <a href="#blog" onClick={() => setActivePage('blog')}>blog</a>
           {' · '}
-          <a href="https://github.com/akshayasbipin" target="_blank" rel="noreferrer">github</a>
         </p>
       </footer>
     </>
