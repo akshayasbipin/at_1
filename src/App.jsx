@@ -230,9 +230,6 @@ function HomeSection({ setActive }) {
             <a className="social-icon-link" href="https://www.instagram.com/shy_milkshake_void/" target="_blank" rel="noreferrer">
               <i className="ti ti-brand-instagram" /> @shy_milkshake_void
             </a>
-            <a className="social-icon-link" href="https://github.com/akshayasbipin" target="_blank" rel="noreferrer">
-              <i className="ti ti-brand-github" /> akshayasbipin
-            </a>
           </div>
         </div>
         <div className="hero-right">
@@ -769,12 +766,9 @@ function ConnectSection() {
   useReveal()
   const links = [
     { icon:'ti-brand-instagram', label:'Instagram', sub:'@shy_milkshake_void', url:'https://www.instagram.com/shy_milkshake_void/' },
-    // { icon:'ti-brand-github', label:'GitHub', sub:'akshayasbipin', url:'https://github.com/akshayasbipin' },
-    // { icon:'ti-brand-linkedin', label:'LinkedIn', sub:'Akshaya S Bipin', url:'https://www.linkedin.com/in/akshaya-s-bipin/' },
     { icon:'ti-external-link', label:'Canva Portfolio', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' },
     // { icon:'ti-brand-canva', label:'Designs', sub:'shymilkshakevoid.my.canva.site', url:'https://shymilkshakevoid.my.canva.site' }, // TODO: Add Google drive link to design folder
     // { icon:'ti-writing', label:'Blog on Wix', sub:'shymilkshakevoid blog', url:'https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog' },
-    // { icon:'ti-code', label:'LeetCode', sub:'21wh1a0513', url:'https://leetcode.com/u/21wh1a0513/' },
   ]
   return (
     <div className="connect-section">
@@ -854,7 +848,6 @@ export default function App() {
           {' · '}
           <a href="https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog" target="_blank" rel="noreferrer">blog</a>
           {' · '}
-          <a href="https://github.com/akshayasbipin" target="_blank" rel="noreferrer">github</a>
         </p>
       </footer>
     </>
