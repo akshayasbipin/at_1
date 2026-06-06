@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import { BLOG_POSTS } from './blog/posts'
 import photoUrl from './assets/photo.jpg'
 import photoUrl2 from './assets/photo2.jpeg'
 import photoUrl3 from './assets/photo3.jpeg'
@@ -18,26 +22,6 @@ const NAV_ITEMS = [
   { id: 'connect',    label: 'Connect' },
 ]
 
-const BLOG_POSTS = [
-  {
-    id: 1,
-    cat: 'Tech · AI · Agents',
-    title: "A Beginner's Guide to Simple Agent Architectures",
-    excerpt: "So you want to start making agents and don't know where to begin. Relatable. Here are the five patterns I actually used — from a plain LLM call to multi-agent orchestration.",
-    date: 'Apr 25, 2026',
-    read: '5 min read',
-    url: 'https://pinkoctopus36.wixsite.com/shymilkshakevoid/post/a-beginner-s-guide-tosimple-agent-architectures',
-  },
-  {
-    id: 2,
-    cat: 'Books · History · Women',
-    title: 'Women Who Refused Permission',
-    excerpt: 'Heroines: Powerful Indian Women of Myth & History — a review of women who authored their own authority. From Draupadi to Hazrat Mahal.',
-    date: 'Feb 14, 2026',
-    read: '6 min read',
-    url: 'https://pinkoctopus36.wixsite.com/shymilkshakevoid/post/women-who-refused-permission',
-  },
-]
 
 const PLAYLIST = [
   { id: 1, title: 'Amsham', artist: 'Aksomaniac, Circle Tone, Bhumi, M.H.R', duration: '5:40', videoId: 'r8iPHiciQd0' },
@@ -205,7 +189,7 @@ function Marquee() {
 // ═══════════════════════════════════════════════════════════════════════
 
 // HOME
-function HomeSection({ setActive }) {
+function HomeSection({ setActive, setSelectedBlogId }) {
   useReveal()
   return (
     <>
@@ -284,13 +268,18 @@ function HomeSection({ setActive }) {
         <h2 className="section-title reveal">From the <span>Blog</span></h2>
         <div className="blog-grid">
           {BLOG_POSTS.map(p => (
-            <a className="blog-card reveal" key={p.id} href={p.url} target="_blank" rel="noreferrer">
+            <button
+              key={p.id}
+              type="button"
+              className="blog-card reveal"
+              onClick={() => { setSelectedBlogId(p.id); setActive('blog'); window.scrollTo(0,0) }}
+            >
               <div className="blog-cat">{p.cat}</div>
               <div className="blog-title">{p.title}</div>
               <div className="blog-excerpt">{p.excerpt}</div>
               <div className="blog-meta"><span>{p.date}</span><span>{p.read}</span></div>
-              <div className="blog-more">Read on Wix</div>
-            </a>
+              <div className="blog-more">Read Post</div>
+            </button>
           ))}
           <div className="blog-card reveal" style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', cursor:'default', background:'var(--blush)', borderColor:'var(--dusty-rose)' }}>
             <div style={{ fontSize:'2.5rem', opacity:0.35, marginBottom:'0.7rem' }}>✍</div>
@@ -393,8 +382,13 @@ function SketchbookSection() {
 }
 
 // BLOG
-function BlogSection() {
+function BlogSection({ selectedBlogId, setSelectedBlogId }) {
   useReveal()
+  const selectedPost = selectedBlogId !== null ? BLOG_POSTS.find((post) => post.id === selectedBlogId) : null
+  if (selectedPost) {
+    return <BlogPost post={selectedPost} onBack={() => setSelectedBlogId(null)} />
+  }
+
   return (
     <div className="smv-section">
       <div className="section-tag">words & thoughts</div>
@@ -402,24 +396,72 @@ function BlogSection() {
       <p className="reveal" style={{ fontSize:'1rem', color:'var(--brown-mid)', marginBottom:'0.5rem' }}>
         tech rants, book reviews, and whatever else spills out of my brain ✦
       </p>
-      <a className="smv-btn reveal" href="https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog" target="_blank" rel="noreferrer" style={{ marginBottom:'1.5rem', display:'inline-block' }}>
-        All Posts on Wix ↗
-      </a>
       <div className="blog-grid">
         {BLOG_POSTS.map(p => (
-          <a key={p.id} className="blog-card reveal" href={p.url} target="_blank" rel="noreferrer">
+          <button
+            key={p.id}
+            type="button"
+            className="blog-card reveal"
+            onClick={() => {
+              setSelectedBlogId(p.id)
+              window.scrollTo(0, 0)
+            }}
+          >
             <div className="blog-cat">{p.cat}</div>
             <div className="blog-title">{p.title}</div>
             <div className="blog-excerpt">{p.excerpt}</div>
             <div className="blog-meta"><span>{p.date}</span><span>{p.read}</span></div>
             <div className="blog-more">Read Full Post</div>
-          </a>
+          </button>
         ))}
         <div className="blog-card reveal" style={{ borderStyle:'dashed', cursor:'default', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', minHeight:'200px' }}>
           <div style={{ fontSize:'2.5rem', opacity:0.3, marginBottom:'0.8rem' }}>✍</div>
           <div className="blog-title" style={{ fontSize:'1rem' }}>Add More Posts</div>
           <p style={{ fontSize:'0.85rem', color:'var(--brown-mid)', marginTop:'0.4rem' }}>copy the blog-card block above ♡</p>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function BlogPost({ post, onBack }) {
+  useReveal()
+  return (
+    <div className="smv-section">
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:'1rem', flexWrap:'wrap' }}>
+        <div>
+          <div className="section-tag">blog post</div>
+          <h2 className="section-title reveal">{post.title}</h2>
+          <div className="blog-meta" style={{ marginTop:'0.8rem', gap:'1rem' }}>
+            <span>{post.cat}</span>
+            <span>{post.date}</span>
+            <span>{post.read}</span>
+          </div>
+        </div>
+        <button type="button" className="smv-btn" onClick={onBack} style={{ alignSelf:'center' }}>
+          Back to all posts
+        </button>
+      </div>
+      <div className="blog-article reveal" style={{ marginTop:'2rem' }}>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            img: ({ node, ...props }) => (
+              <img {...props} style={{ width:'100%', borderRadius:'16px', margin:'1.5rem 0' }} />
+            ),
+            iframe: ({ node, ...props }) => (
+              <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%', margin:'1.5rem 0' }}>
+                <iframe {...props} style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }} />
+              </div>
+            ),
+            a: ({ node, ...props }) => (
+              <a {...props} target="_blank" rel="noreferrer" style={{ color:'var(--terracotta)' }} />
+            ),
+          }}
+        >
+          {post.content}
+        </ReactMarkdown>
       </div>
     </div>
   )
@@ -809,25 +851,27 @@ function ConnectSection() {
 // ═══════════════════════════════════════════════════════════════════════
 export default function App() {
   const [active, setActive] = useState('home')
+  const [selectedBlogId, setSelectedBlogId] = useState(null)
 
   const setActivePage = useCallback((id) => {
     setActive(id)
+    if (id !== 'blog') setSelectedBlogId(null)
     window.scrollTo(0,0)
   }, [])
 
   const renderSection = () => {
     switch (active) {
-      case 'home':       return <HomeSection setActive={setActivePage} />
+      case 'home':       return <HomeSection setActive={setActivePage} setSelectedBlogId={setSelectedBlogId} />
       case 'gallery':    return <GallerySection />
       case 'sketchbook': return <SketchbookSection />
-      case 'blog':       return <BlogSection />
+      case 'blog':       return <BlogSection selectedBlogId={selectedBlogId} setSelectedBlogId={setSelectedBlogId} />
       case 'guestbook':  return <GuestbookSection />
       case 'radio':      return <RadioSection />
       case 'polaroids':  return <PolariodsSection />
       case 'magazine':   return <MagazineSection />
       case 'thoughtbook': return <ThoughtBookSection />
       case 'connect':    return <ConnectSection />
-      default:           return <HomeSection setActive={setActivePage} />
+      default:           return <HomeSection setActive={setActivePage} setSelectedBlogId={setSelectedBlogId} />
     }
   }
 
@@ -846,7 +890,7 @@ export default function App() {
           {' · '}
           <a href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer">canva</a>
           {' · '}
-          <a href="https://pinkoctopus36.wixsite.com/shymilkshakevoid/blog" target="_blank" rel="noreferrer">blog</a>
+          <a href="#blog" onClick={() => setActivePage('blog')}>blog</a>
           {' · '}
         </p>
       </footer>
