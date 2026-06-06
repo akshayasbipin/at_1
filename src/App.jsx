@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import photoUrl from './assets/photo.jpg'
+import photoUrl2 from './assets/photo2.jpeg'
+import photoUrl3 from './assets/photo3.jpeg'
+import photoUrl4 from './assets/photo4.jpeg'
 
 // ─── DATA ─────────────────────────────────────────────────────────────
 const NAV_ITEMS = [
@@ -237,10 +241,10 @@ function HomeSection({ setActive }) {
           <span className="hero-doodle" style={{ top:'45%', left:'5%', animationDelay:'-.8s', fontSize:'1.6rem' }}>✦</span>
           <div className="hero-photo-grid">
             {/* Replace these with <img src="./your-image.jpg"> inside each .photo-tile */}
-            <div className="photo-tile"><span className="tile-icon">🖼</span><span>add your art</span></div>
-            <div className="photo-tile"><span className="tile-icon">🌸</span><span>add photo</span></div>
-            <div className="photo-tile"><span className="tile-icon">🎨</span><span>doodle here</span></div>
-            <div className="photo-tile"><span className="tile-icon">📷</span><span>add photo</span></div>
+            <div className="photo-tile"><img src={photoUrl} alt="Us💕"/></div>
+            <div className="photo-tile"><img src={photoUrl2} alt="GalleryDump✨"/></div>
+            <div className="photo-tile"><img src={photoUrl3} alt="GalleryDump📷"/></div>
+            <div className="photo-tile"><img src={photoUrl4} alt="GalleryDump🪨"/></div>
           </div>
         </div>
       </section>
