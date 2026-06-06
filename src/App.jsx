@@ -3,6 +3,12 @@ import photoUrl from './assets/photo.jpg'
 import photoUrl2 from './assets/photo2.jpeg'
 import photoUrl3 from './assets/photo3.jpeg'
 import photoUrl4 from './assets/photo4.jpeg'
+import photoUrl5 from './assets/polorids/p1.jpg'
+import photoUrl6 from './assets/polorids/p2.jpg'
+import photoUrl7 from './assets/polorids/p3.jpg'
+import photoUrl8 from './assets/polorids/p4.jpg'
+import photoUrl9 from './assets/polorids/p5.jpg'
+import photoUrl10 from './assets/polorids/p6.jpg'
 
 // ─── DATA ─────────────────────────────────────────────────────────────
 const NAV_ITEMS = [
@@ -57,7 +63,7 @@ const MARQUEE_WORDS = [
 const MOODS = ['✨ inspired','🌙 dreamy','🔥 fired up','🌿 calm','🤔 curious','💭 rambling']
 
 const BELIEFS = [
-  { n: '01.', t: 'Simple empathy shouldn\'t be labelled revolutionary, maybe try understanding.' },
+  { n: '01.', t: '"Someone will always be prettier. Someone will always be smarter. Someone will always be younger. But they will never be you." - Freddie Mercury' },
   { n: '02.', t: 'AI isn\'t bad, it\'s the lack of ethics — same as the internet.' },
   { n: '03.', t: 'Hate is taught.' },
   { n: '04.', t: '"When we hear enough lies we no longer recognize the truth at all." — Chernobyl (HBO)' },
@@ -122,7 +128,6 @@ function useReveal() {
 const TW_LINES = [
   'a cozy corner for everything ♡',
   'chronic new project starter ✦',
-  'vibes are permanent here',
   'hobby hopper & proud of it',
   'still figuring it out — and that is okay',
 ]
@@ -217,7 +222,7 @@ function HomeSection({ setActive }) {
           <p className="hero-sub">a cozy corner for hobbies, blogs,<br />hyperfixations & everything in between</p>
           <p className="hero-desc">
             Hiiii.... Welcome to shyMilkshakeVoid ♡ — collecting my art, code, ideas, interests
-            and whatever hyperfixation wins this week. vibes are permanent.
+            and whatever hyperfixation wins this week.
           </p>
           <p className="hero-quote">"Growth is growth, no matter how small"</p>
           <div className="hero-btns">
@@ -255,8 +260,8 @@ function HomeSection({ setActive }) {
             <div className="section-tag">who is this</div>
             <h2 className="section-title">Miss Yapps <span>a Lot</span></h2>
             <p style={{ fontSize:'1rem', lineHeight:1.75, color:'var(--brown-mid)', marginBottom:'0.5rem' }}>
-              AI backend engineer by day, digital doodler by soul. I collect hobbies the way some people
-              collect dishes — enthusiastically and without storage space.
+              Employed by day, batman by night.<br></br>
+              <b>पवित्र पापी</b> & <b>विचित्र नारी</b>
             </p>
             <ul className="adj-list">
               {['Chronic New Project Starter','AI Backend Engineer','Random Researcher','Hobby Hopper','Polymathy']
@@ -329,7 +334,7 @@ function GallerySection() {
       <div className="section-tag">my art dump</div>
       <h2 className="section-title reveal">Gallery</h2>
       <p className="reveal" style={{ fontSize:'1rem', color:'var(--brown-mid)', maxWidth:'60ch', marginBottom:'0.5rem' }}>
-        digital doodles, illustrations, random creativity ✦ hover the tiles to peek.
+        digital doodles, illustrations, random creativity 
       </p>
       <p className="reveal" style={{ marginBottom:'1.5rem' }}>
         <a className="smv-btn" href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer">
@@ -605,12 +610,12 @@ function RadioSection() {
 
 // POLAROIDS
 const POLAROID_DATA = [
-  { icon:'📷', cap:'add a photo ♡' },
-  { icon:'🌸', cap:'a favourite moment' },
-  { icon:'🖼', cap:'my art' },
-  { icon:'🌿', cap:'something pretty' },
-  { icon:'✦', cap:'add here' },
-  { icon:'🎨', cap:'process shot' },
+  { cap:'daaaamm ♡', img: photoUrl8 },
+  { cap:'khana khazana', img: photoUrl5 },
+  { cap:'wow green', img: photoUrl6 },
+  { cap:'yellow🌻', img: photoUrl7 },
+  { cap:'can\'t miss a red', img: photoUrl9 },
+  { cap:'gravity ig', img: photoUrl10 },
 ]
 
 function PolariodsSection() {
@@ -620,21 +625,24 @@ function PolariodsSection() {
       <div className="section-tag">film roll</div>
       <h2 className="section-title reveal">Polo<span>rids</span></h2>
       <p className="reveal" style={{ fontSize:'1rem', color:'var(--brown-mid)', maxWidth:'55ch', marginBottom:'2rem' }}>
-        little snapshots — art, life, moments worth keeping ✦ hover to lift them off the page
+        little snapshots — art, life, moments worth keeping...for the month ₍^. .^₎⟆
       </p>
       <div className="polaroid-grid">
         {POLAROID_DATA.map((p, i) => (
           <div key={i} className="polaroid reveal">
             <div className="polaroid-img">
-              {/* Replace with: <img src="./images/photo.jpg" alt="caption" /> */}
-              <span className="pol-placeholder">{p.icon}</span>
+              {p.img ? (
+                <img src={p.img} alt={p.cap} style={{width:'100%', height:'100%', objectFit:'cover'}} />
+              ) : (
+                <span className="pol-placeholder">{p.icon}</span>
+              )}
             </div>
             <div className="polaroid-caption">{p.cap}</div>
           </div>
         ))}
       </div>
       <p style={{ marginTop:'2rem', fontFamily:'var(--font-mono)', fontSize:'0.72rem', color:'var(--sand)', textAlign:'center' }}>
-        ↑ drop your images into each .polaroid-img div in the source code ♡
+        trying to update it monthly 𐔌՞ ܸ.ˬ.ܸ՞𐦯
       </p>
     </div>
   )
