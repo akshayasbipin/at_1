@@ -36,11 +36,11 @@ const BLOG_POSTS = [
 ]
 
 const PLAYLIST = [
-  { id: 1, title: 'Cornfield Chase', artist: 'Hans Zimmer', duration: '2:08' },
-  { id: 2, title: 'Spiegel im Spiegel', artist: 'Arvo Pärt', duration: '9:57' },
-  { id: 3, title: 'Experience', artist: 'Ludovico Einaudi', duration: '5:14' },
-  { id: 4, title: 'River Flows in You', artist: 'Yiruma', duration: '3:34' },
-  { id: 5, title: "Comptine d'un autre \u00e9t\u00e9", artist: 'Yann Tiersen', duration: '2:33' },
+  { id: 1, title: 'Amsham', artist: 'Aksomaniac, Circle Tone, Bhumi, M.H.R', duration: '5:40', videoId: 'r8iPHiciQd0' },
+  { id: 2, title: "She'd Say", artist: 'Andy Gramer, Ladysmith Black Mambazo', duration: '4:01', videoId: 'MALzZRxr94g' },
+  { id: 3, title: 'I Went Too Far', artist: 'AURORA', duration: '3:43', videoId: 'eT6dLJd3rYk' },
+  { id: 4, title: 'TOUR SHIT!', artist: 'Seedhe Maut', duration: '2:54', videoId: 't_QZPzg-kTE' },
+  { id: 5, title: "Teen Dost", artist: 'Seedhe Maut x Sez on the Beat', duration: '3:33', videoId: 'y-PF51nSwFI' },
 ]
 
 const MARQUEE_WORDS = [
@@ -500,37 +500,56 @@ function RadioSection() {
   useReveal()
   const [current, setCurrent] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const intervalRef = useRef(null)
+  const [playerUrl, setPlayerUrl] = useState('')
 
   const track = PLAYLIST[current]
 
+  const getIframeUrl = (videoId, auto) =>
+    `https://www.youtube.com/embed/${videoId}?autoplay=${auto ? 1 : 0}&controls=1&rel=0&modestbranding=1`
+
+  useEffect(() => {
+    if (!track) return
+    if (playing) {
+      setPlayerUrl(getIframeUrl(track.videoId, true))
+    } else {
+      setPlayerUrl('')
+    }
+  }, [track?.videoId, playing])
+
   const togglePlay = () => {
-    setPlaying(p => {
-      if (!p) {
-        intervalRef.current = setInterval(() => setProgress(pr => { if (pr >= 100) { setProgress(0); setCurrent(c => (c+1)%PLAYLIST.length); return 0 } return pr + 0.3 }), 100)
-      } else {
-        clearInterval(intervalRef.current)
-      }
-      return !p
-    })
+    if (!track) return
+    setPlaying((prev) => !prev)
   }
 
-  const prev = () => { setProgress(0); setCurrent(c => (c - 1 + PLAYLIST.length) % PLAYLIST.length) }
-  const next = () => { setProgress(0); setCurrent(c => (c + 1) % PLAYLIST.length) }
+  const changeTrack = (index) => {
+    if (!PLAYLIST.length) return
+    setCurrent(index)
+    setPlaying(true)
+  }
 
-  useEffect(() => () => clearInterval(intervalRef.current), [])
+  const prev = () => changeTrack((current - 1 + PLAYLIST.length) % PLAYLIST.length)
+  const next = () => changeTrack((current + 1) % PLAYLIST.length)
 
-  const elapsed = (progress / 100 * (track.duration.split(':').reduce((a,b) => a*60+Number(b),0))).toFixed(0)
-  const mins = Math.floor(elapsed/60).toString().padStart(2,'0')
-  const secs = (elapsed % 60).toString().padStart(2,'0')
+  if (!PLAYLIST.length) {
+    return (
+      <div className="smv-section">
+        <div className="section-tag">something to listen to</div>
+        <h2 className="section-title reveal">Radio <span>♡</span></h2>
+        <div className="radio-player reveal">
+          <p style={{ margin: '0', color: 'var(--brown-mid)', lineHeight: 1.8 }}>
+            No tracks are configured. Add up to 5 YouTube video IDs in the playlist and reload.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="smv-section">
       <div className="section-tag">something to listen to</div>
       <h2 className="section-title reveal">Radio <span>♡</span></h2>
       <p className="reveal" style={{ fontSize:'1rem', color:'var(--brown-mid)', maxWidth:'55ch', marginBottom:'0.5rem' }}>
-        my current listening pile — soft, dreamy, the kind of music you put on at 2am ✦
+        my current listening pile — choose a YouTube track here, then use our player button to start it.
       </p>
       <div className="radio-player reveal">
         <div className="radio-display">
@@ -540,11 +559,22 @@ function RadioSection() {
           <div className="radio-track-title">{track.title}</div>
           <div className="radio-track-artist">{track.artist}</div>
         </div>
-        <div className="radio-progress" onClick={e => { const r = e.currentTarget.getBoundingClientRect(); setProgress(((e.clientX-r.left)/r.width)*100) }}>
-          <div className="radio-progress-fill" style={{ width:`${progress}%` }} />
-        </div>
-        <div className="radio-time">
-          <span>{mins}:{secs}</span><span>{track.duration}</span>
+        <div style={{ marginBottom:'1.5rem' }}>
+          {playerUrl ? (
+            <iframe
+              width="100%"
+              height="260"
+              src={playerUrl}
+              title={`YouTube player - ${track.title}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <div style={{ minHeight:'260px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--brown-mid)', background:'rgba(255,255,255,0.45)', border:'1px solid var(--sand)', fontFamily:'var(--font-mono)', fontSize:'0.9rem' }}>
+              Press play to load the selected YouTube video.
+            </div>
+          )}
         </div>
         <div className="radio-controls">
           <button className="radio-btn" onClick={prev}><i className="ti ti-player-skip-back" /></button>
@@ -556,7 +586,7 @@ function RadioSection() {
         <div className="radio-playlist">
           {PLAYLIST.map((t, i) => (
             <div key={t.id} className={`radio-playlist-item${current === i ? ' active' : ''}`}
-              onClick={() => { setCurrent(i); setProgress(0) }}>
+              onClick={() => changeTrack(i)}>
               <span className="track-num">{String(i+1).padStart(2,'0')}</span>
               <span style={{ flex:1 }}>{t.title}</span>
               <span style={{ opacity:0.6, fontSize:'0.7rem' }}>{t.artist}</span>
@@ -565,12 +595,8 @@ function RadioSection() {
           ))}
         </div>
         <p style={{ marginTop:'1.2rem', fontFamily:'var(--font-mono)', fontSize:'0.65rem', color:'var(--sand)', opacity:0.7 }}>
-          ♡ visual player only — links your real playlist below ↓
+          ♡ the playlist lives here, but playback happens via YouTube iframe — our controls still stay on brand.
         </p>
-        <div style={{ marginTop:'0.8rem', display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap' }}>
-          <a className="smv-btn" style={{ fontSize:'0.7rem', padding:'0.4rem 1rem' }} href="https://open.spotify.com" target="_blank" rel="noreferrer">Spotify</a>
-          <a className="smv-btn" style={{ fontSize:'0.7rem', padding:'0.4rem 1rem' }} href="https://music.youtube.com" target="_blank" rel="noreferrer">YT Music</a>
-        </div>
       </div>
     </div>
   )
