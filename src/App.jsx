@@ -1,4 +1,4 @@
-﻿import { useCallback, useState } from 'react'
+﻿import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Cursor, Nav, StickyNote } from './components'
 import HomePage from './pages/HomePage.jsx'
 import GalleryPage from './pages/GalleryPage.jsx'
@@ -12,51 +12,32 @@ import ThoughtBookPage from './pages/ThoughtBookPage.jsx'
 import ConnectPage from './pages/ConnectPage.jsx'
 
 export default function App() {
-  const [active, setActive] = useState('home')
-  const [selectedBlogId, setSelectedBlogId] = useState(null)
+  const navigate = useNavigate()
 
-  const setActivePage = useCallback((id) => {
-    setActive(id)
-    if (id !== 'blog') {
-      setSelectedBlogId(null)
-    }
+  const handleNavigate = (path) => {
+    navigate(path)
     window.scrollTo(0, 0)
-  }, [])
-
-  const renderPage = () => {
-    switch (active) {
-      case 'home':
-        return <HomePage setActive={setActivePage} setSelectedBlogId={setSelectedBlogId} />
-      case 'gallery':
-        return <GalleryPage />
-      case 'sketchbook':
-        return <SketchbookPage />
-      case 'blog':
-        return <BlogPage selectedBlogId={selectedBlogId} setSelectedBlogId={setSelectedBlogId} />
-      case 'guestbook':
-        return <GuestbookPage />
-      case 'radio':
-        return <RadioPage />
-      case 'polaroids':
-        return <PolaroidsPage />
-      case 'magazine':
-        return <MagazinePage />
-      case 'thoughtbook':
-        return <ThoughtBookPage />
-      case 'connect':
-        return <ConnectPage />
-      default:
-        return <HomePage setActive={setActivePage} setSelectedBlogId={setSelectedBlogId} />
-    }
   }
 
   return (
     <>
       <Cursor />
       <StickyNote />
-      <Nav active={active} setActive={setActivePage} />
+      <Nav handleNavigate={handleNavigate} />
       <main style={{ paddingTop: '60px', minHeight: '100vh' }}>
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<HomePage handleNavigate={handleNavigate} />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/sketchbook" element={<SketchbookPage />} />
+          <Route path="/blog" element={<BlogPage handleNavigate={handleNavigate} />} />
+          <Route path="/blog/:id" element={<BlogPage handleNavigate={handleNavigate} />} />
+          <Route path="/guestbook" element={<GuestbookPage />} />
+          <Route path="/radio" element={<RadioPage />} />
+          <Route path="/polaroids" element={<PolaroidsPage />} />
+          <Route path="/magazine" element={<MagazinePage />} />
+          <Route path="/thoughtbook" element={<ThoughtBookPage />} />
+          <Route path="/connect" element={<ConnectPage />} />
+        </Routes>
       </main>
       <footer className="smv-footer">
         <p>shyMilkshakeVoid ♡ made with <span className="footer-heart">♥</span> and too much overthinking</p>
@@ -65,7 +46,7 @@ export default function App() {
           {' · '}
           <a href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer">canva</a>
           {' · '}
-          <a href="#blog" onClick={() => setActivePage('blog')}>blog</a>
+          <a href="#" onClick={() => handleNavigate('/blog')}>blog</a>
           {' · '}
         </p>
       </footer>

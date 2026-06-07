@@ -1,6 +1,7 @@
 import { Marquee } from '../components/Marquee.jsx'
 import { Typewriter } from '../components/Typewriter.jsx'
 import { useReveal } from '../hooks/useReveal.js'
+import { useNavigate } from 'react-router-dom'
 import { BLOG_POSTS } from '../blog/posts'
 import photoUrl from '../assets/photo.jpg'
 import photoUrl2 from '../assets/photo2.jpeg'
@@ -14,8 +15,9 @@ const BELIEFS = [
   { n: '04.', t: '"When we hear enough lies we no longer recognize the truth at all." — Chernobyl (HBO)' },
 ]
 
-export default function HomePage({ setActive, setSelectedBlogId }) {
+export default function HomePage({ handleNavigate }) {
   useReveal()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -40,10 +42,10 @@ export default function HomePage({ setActive, setSelectedBlogId }) {
           </p>
           <p className="hero-quote">"Growth is growth, no matter how small"</p>
           <div className="hero-btns">
-            <button className="smv-btn filled" onClick={() => setActive('gallery')}>
+            <button className="smv-btn filled" onClick={() => navigate('/gallery')}>
               See My Art
             </button>
-            <button className="smv-btn" onClick={() => setActive('blog')}>
+            <button className="smv-btn" onClick={() => navigate('/blog')}>
               Read Blogs
             </button>
             <a
@@ -118,7 +120,7 @@ export default function HomePage({ setActive, setSelectedBlogId }) {
                 (item) => <li key={item}>{item}</li>
               )}
             </ul>
-            <button className="smv-btn" style={{ marginTop: '1.5rem' }} onClick={() => setActive('connect')}>
+            <button className="smv-btn" style={{ marginTop: '1.5rem' }} onClick={() => navigate('/connect')}>
               Say Hello ♡
             </button>
           </div>
@@ -145,8 +147,7 @@ export default function HomePage({ setActive, setSelectedBlogId }) {
               type="button"
               className="blog-card reveal"
               onClick={() => {
-                setSelectedBlogId(post.id)
-                setActive('blog')
+                navigate(`/blog/${post.id}`)
               }}
             >
               <div className="blog-cat">{post.cat}</div>
@@ -180,7 +181,7 @@ export default function HomePage({ setActive, setSelectedBlogId }) {
           </div>
         </div>
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <button className="smv-btn" onClick={() => setActive('blog')}>
+          <button className="smv-btn" onClick={() => navigate('/blog')}>
             All Posts
           </button>
         </div>
