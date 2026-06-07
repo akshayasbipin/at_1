@@ -83,7 +83,7 @@ function BlogPost({ post, onBack }) {
           rehypePlugins={[rehypeRaw]}
           components={{
             img: ({ node, ...props }) => (
-              <img {...props} style={{ width: '100%', borderRadius: '16px', margin: '1.5rem 0' }} />
+              <img {...props} style={{ display: 'block', maxWidth: '100%', borderRadius: '16px', margin: '1.5rem auto' }} />
             ),
             iframe: ({ node, ...props }) => (
               <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', margin: '1.5rem 0' }}>
