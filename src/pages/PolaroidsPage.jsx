@@ -21,7 +21,7 @@ export default function PolaroidsPage() {
   return (
     <div className="smv-section">
       <div className="section-tag">film roll</div>
-      <h2 className="section-title reveal">Polo<span>rids</span></h2>
+      <h2 className="section-title reveal">Pola<span>roids</span></h2>
       <p className="reveal" style={{ fontSize: '1rem', color: 'var(--brown-mid)', maxWidth: '55ch', marginBottom: '2rem' }}>
         little snapshots — art, life, moments worth keeping...for the month ₍^. .^₎⟆
       </p>

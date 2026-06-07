@@ -32,17 +32,7 @@ export default function MagazinePage() {
       
       <div className="mag-grid reveal" style={{ marginTop: '2rem', justifyContent: 'center' }}>
         <div style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: '900px',
-          height: 0,
           paddingTop: '281.1127%',
-          boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
-          marginTop: '1.6rem',
-          marginBottom: '0.9rem',
-          overflow: 'hidden',
-          borderRadius: '8px',
-          willChange: 'transform',
         }}>
           <iframe
             loading="lazy"

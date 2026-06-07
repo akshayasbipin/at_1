@@ -527,7 +527,7 @@ body::before {
   letter-spacing: 0.05em; color: var(--blush); margin-bottom: 0.3rem;
 }
 .mag-issue { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); margin-bottom: 1.5rem; }
-.mag-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; margin-top: 2.5rem; }
+.mag-grid { gap: 0; margin-top: 2.5rem; }
 .mag-feature {
   background: var(--cream-light); border: 1.5px solid var(--cream-warm);
   padding: 1.8rem; position: relative;
