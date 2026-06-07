@@ -1,20 +1,28 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const NAV_ITEMS = [
-  { id: 'home', label: 'Home' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'sketchbook', label: 'SketchBook' },
-  { id: 'blog', label: 'Blog' },
-  { id: 'guestbook', label: 'Guestbook' },
-  { id: 'radio', label: 'Radio' },
-  { id: 'polaroids', label: 'Polaroids' },
-  { id: 'magazine', label: 'Magazine' },
-  { id: 'thoughtbook', label: 'Thought Book' },
-  { id: 'connect', label: 'Connect' },
+  { id: 'home', label: 'Home', path: '/' },
+  { id: 'gallery', label: 'Gallery', path: '/gallery' },
+  { id: 'sketchbook', label: 'SketchBook', path: '/sketchbook' },
+  { id: 'blog', label: 'Blog', path: '/blog' },
+  { id: 'guestbook', label: 'Guestbook', path: '/guestbook' },
+  { id: 'radio', label: 'Radio', path: '/radio' },
+  { id: 'polaroids', label: 'Polaroids', path: '/polaroids' },
+  { id: 'magazine', label: 'Magazine', path: '/magazine' },
+  { id: 'thoughtbook', label: 'Thought Book', path: '/thoughtbook' },
+  { id: 'connect', label: 'Connect', path: '/connect' },
 ]
 
-export function Nav({ active, setActive }) {
+export function Nav({ handleNavigate }) {
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+
+  const isActive = (path) => {
+    if (path === '/' && location.pathname === '/') return true
+    if (path !== '/' && location.pathname.startsWith(path)) return true
+    return false
+  }
 
   return (
     <nav className="smv-nav">
@@ -23,9 +31,8 @@ export function Nav({ active, setActive }) {
         href="#"
         onClick={(event) => {
           event.preventDefault()
-          setActive('home')
+          handleNavigate('/')
           setOpen(false)
-          window.scrollTo(0, 0)
         }}
       >
         shy<span>Milkshake</span>Void
@@ -34,11 +41,10 @@ export function Nav({ active, setActive }) {
         {NAV_ITEMS.map((item) => (
           <li key={item.id}>
             <button
-              className={active === item.id ? 'active' : ''}
+              className={isActive(item.path) ? 'active' : ''}
               onClick={() => {
-                setActive(item.id)
+                handleNavigate(item.path)
                 setOpen(false)
-                window.scrollTo(0, 0)
               }}
             >
               {item.label}

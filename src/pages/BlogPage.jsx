@@ -2,20 +2,18 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { useReveal } from '../hooks/useReveal.js'
+import { useParams, useNavigate } from 'react-router-dom'
 import { BLOG_POSTS } from '../blog/posts'
 
-export default function BlogPage({ selectedBlogId, setSelectedBlogId }) {
+export default function BlogPage({ handleNavigate }) {
   useReveal()
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-  const selectedPost = selectedBlogId != null ? BLOG_POSTS.find((post) => post.id === selectedBlogId) : null
-
-  const handleBack = () => {
-    setSelectedBlogId(null)
-    window.scrollTo(0, 0)
-  }
+  const selectedPost = id ? BLOG_POSTS.find((post) => post.id === parseInt(id)) : null
 
   if (selectedPost) {
-    return <BlogPost key={`post-${selectedPost.id}`} post={selectedPost} onBack={handleBack} />
+    return <BlogPost post={selectedPost} onBack={() => navigate('/blog')} />
   }
 
   return (
@@ -32,7 +30,7 @@ export default function BlogPage({ selectedBlogId, setSelectedBlogId }) {
             type="button"
             className="blog-card reveal"
             onClick={() => {
-              setSelectedBlogId(post.id)
+              navigate(`/blog/${post.id}`)
               window.scrollTo(0, 0)
             }}
           >
