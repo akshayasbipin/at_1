@@ -24,7 +24,7 @@ export default function App() {
       <Cursor />
       <StickyNote />
       <Nav handleNavigate={handleNavigate} />
-      <main style={{ paddingTop: '60px', minHeight: '100vh' }}>
+      <main style={{ minHeight: '100vh' }}>
         <Routes>
           <Route path="/" element={<HomePage handleNavigate={handleNavigate} />} />
           <Route path="/gallery" element={<GalleryPage />} />
