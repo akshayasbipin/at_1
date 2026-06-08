@@ -2,7 +2,7 @@
 import { Cursor, Nav, StickyNote } from './components'
 import HomePage from './pages/HomePage.jsx'
 import GalleryPage from './pages/GalleryPage.jsx'
-import SketchbookPage from './pages/SketchbookPage.jsx'
+// import SketchbookPage from './pages/SketchbookPage.jsx'
 import BlogPage from './pages/BlogPage.jsx'
 import GuestbookPage from './pages/GuestbookPage.jsx'
 import RadioPage from './pages/RadioPage.jsx'
@@ -28,7 +28,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage handleNavigate={handleNavigate} />} />
           <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/sketchbook" element={<SketchbookPage />} />
+          {/* <Route path="/sketchbook" element={<SketchbookPage />} /> */}
           <Route path="/blog" element={<BlogPage handleNavigate={handleNavigate} />} />
           <Route path="/blog/:id" element={<BlogPage handleNavigate={handleNavigate} />} />
           <Route path="/guestbook" element={<GuestbookPage />} />
