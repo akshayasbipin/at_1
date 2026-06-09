@@ -22,9 +22,9 @@ export default function SketchbookPage() {
       <p className="reveal" style={{ fontSize: '1rem', color: 'var(--brown-mid)', maxWidth: '58ch', marginBottom: '0.5rem' }}>
         the unfinished, the experimental, the happy accidents — this is where art lives before it's "done" ✦
       </p>
-      {/* <a className="smv-btn reveal" href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
+      <a className="smv-btn reveal" href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
         Full Portfolio on Canva ↗
-      </a> */}
+      </a>
       <div className="sketchbook-grid" style={{ marginTop: '1.5rem' }}>
         {SKETCH_TILES.map((tile, index) => (
           <div key={index} className={`sketch-tile reveal ${tile.cls}`}>

@@ -27,20 +27,29 @@ export default function MagazinePage() {
         <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '1.05rem', color: 'var(--cream-warm)', maxWidth: '50ch', opacity: 0.8 }}>
           "a cozy corner dedicated to collect hobbies, blogs, ideas and whatever hyperfixation wins this week"
         </p>
-        
       </div>
-      
-      <div className="mag-grid reveal" style={{ marginTop: '2rem', justifyContent: 'center' }}>
-        <div style={{
-          paddingTop: '281.1127%',
-        }}>
-          <iframe
-            loading="lazy"
-            style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none', padding: 0, margin: 0 }}
-            src="https://www.canva.com/design/DAHL4Kz4vsU/8O-Wc08fPDfxxK0ljVo9EQ/view?embed"
-            allowFullScreen
-            title="Magazine Embed"
-          />
+      <div className="mag-grid reveal" style={{ marginTop: '2rem' }}>
+        <div className="mag-feature">
+          <div className="mag-feature-tag">Cover Story</div>
+          <div className="mag-feature-title">Women Who Refused Permission</div>
+          <div className="mag-feature-body">
+            <em>Heroines: Powerful Indian Women of Myth & History</em> by Ira Mukhoty is built around a line that refuses to leave the reader alone: every woman described in this book refuses to borrow a man's prerogative. It is a book about women who authored their own authority.
+          </div>
+          <div className="mag-img-placeholder" style={{ marginTop: '1.2rem' }}>
+            <span>add cover image here ↑</span>
+          </div>
+          <a className="smv-btn" href="https://pinkoctopus36.wixsite.com/shymilkshakevoid/post/women-who-refused-permission" target="_blank" rel="noreferrer" style={{ marginTop: '1.2rem', display: 'inline-block' }}>
+            Read Full Review →
+          </a>
+        </div>
+        <div className="mag-sidebar">
+          {MAG_SIDEBAR.map((item) => (
+            <a key={item.n} className="mag-sidebar-item" href={item.url} target="_blank" rel="noreferrer">
+              <div className="s-num">{item.n}</div>
+              <div className="s-title">{item.title}</div>
+              <div className="s-cat">{item.cat}</div>
+            </a>
+          ))}
         </div>
       </div>
       <div style={{ textAlign: 'center', marginTop: '2.5rem', padding: '2rem 0' }}>
