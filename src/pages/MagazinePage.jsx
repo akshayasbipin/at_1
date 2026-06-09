@@ -18,9 +18,6 @@ export default function MagazinePage() {
       <p className="reveal" style={{ fontSize: '1rem', color: 'var(--brown-mid)', maxWidth: '55ch', marginBottom: '0.5rem' }}>
         a messy, beautiful editorial — like a magazine that got out of hand ✦
       </p>
-      <a className="smv-btn reveal" href="https://shymilkshakevoid.my.canva.site" target="_blank" rel="noreferrer" style={{ marginBottom: '2rem', display: 'inline-block' }}>
-        Open Zine on Canva ↗
-      </a>
       <div className="mag-hero reveal">
         <div className="mag-masthead">shyMilkshakeVoid</div>
         <div className="mag-issue">Issue No. 01 · June 2026 · Hyderabad</div>
