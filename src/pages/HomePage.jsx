@@ -46,7 +46,10 @@ export default function HomePage({ handleNavigate }) {
               See My Art
             </button>
             <button className="smv-btn" onClick={() => navigate('/blog')}>
-              Read Blogs
+              Read Blogs 
+            </button>
+            <button className="smv-btn" onClick={() => navigate('/magazine')}>
+              Open Zine ↗
             </button>
             <a
               className="smv-btn"
@@ -55,6 +58,15 @@ export default function HomePage({ handleNavigate }) {
               rel="noreferrer"
             >
               Instagram
+            </a>
+            <a
+              className="smv-btn"
+              href="https://shymilkshakevoid.my.canva.site" 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{ marginBottom: '2rem', display: 'inline-block' }}
+            >
+              Portfolio on Canva ↗
             </a>
           </div>
           <div className="social-row">
