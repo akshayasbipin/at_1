@@ -28,15 +28,125 @@ export default function GuestbookPage() {
   const [name, setName] = useState('')
   const [msg, setMsg] = useState('')
   const [emoji, setEmoji] = useState('🌸')
-  const emojis = ['🌸', '✨', '🎨', '🌿', '♡', '✦', '🎀', '🍓']
 
-  const submit = () => {
-    if (!msg.trim()) return
-    const now = new Date()
-    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    setEntries((prev) => [{ name: name.trim() || 'anonymous visitor', msg: msg.trim(), emoji, time }, ...prev])
-    setName('')
-    setMsg('')
+  // ── Fetch entries ────────────────────────────────────────────────────────────
+  const fetchEntries = useCallback(async (reset = false) => {
+    if (!supabase) {
+      // No Supabase configured — show placeholder data
+      // setEntries(PLACEHOLDER_ENTRIES)
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+
+    const start = reset ? 0 : offset
+
+    const { data, error: fetchErr, count } = await supabase
+      .from('guestbook')
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(start, start + PAGE_SIZE - 1)
+
+    setLoading(false)
+
+    if (fetchErr) {
+      setError('Couldn\'t load entries — ' + fetchErr.message)
+      return
+    }
+
+    if (reset) {
+      setEntries(data)
+      setOffset(PAGE_SIZE)
+    } else {
+      setEntries(prev => [...prev, ...data])
+      setOffset(start + PAGE_SIZE)
+    }
+
+    setHasMore(count > (start + PAGE_SIZE))
+  }, [offset])
+
+  useEffect(() => { fetchEntries(true) }, []) // eslint-disable-line
+
+  // ── Real-time subscription: new rows appear instantly for all visitors ────────
+  useEffect(() => {
+    if (!supabase) return
+
+    const channel = supabase
+      .channel('guestbook-realtime')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'guestbook' },
+        (payload) => {
+          // Deduplicate: if we already added this row optimistically (same id), skip it
+          setEntries(prev => {
+            if (prev.some(e => e.id === payload.new.id)) return prev
+            return [payload.new, ...prev]
+          })
+        }
+      )
+      .subscribe()
+
+    return () => supabase.removeChannel(channel)
+  }, [])
+
+  // ── Submit handler ────────────────────────────────────────────────────────────
+  const submit = async () => {
+    const trimmedMsg  = msg.trim()
+    const trimmedName = name.trim()
+
+    if (!trimmedMsg) return
+
+    // Client-side safety check
+    if (!isSafe(trimmedMsg) || !isSafe(trimmedName)) {
+      setSubmitMsg({ type: 'error', text: 'Message contains blocked content — please keep it cozy ♡' })
+      setTimeout(() => setSubmitMsg(null), 4000)
+      return
+    }
+
+    if (!supabase) {
+      // Offline demo mode — just prepend locally
+      const fake = {
+        id: Date.now(),
+        name: trimmedName || 'anonymous visitor',
+        message: trimmedMsg,
+        emoji,
+        created_at: new Date().toISOString(),
+      }
+      setEntries(prev => [fake, ...prev])
+      setName(''); setMsg('')
+      setSubmitMsg({ type: 'success', text: '(demo mode — connect Supabase to persist!) ♡' })
+      setTimeout(() => setSubmitMsg(null), 4000)
+      return
+    }
+
+    setSubmitting(true)
+    setSubmitMsg(null)
+
+    // Use .select().single() so Supabase returns the inserted row with its real id + created_at
+    const { data: inserted, error: insertErr } = await supabase
+      .from('guestbook')
+      .insert([{
+        name:    trimmedName || 'anonymous visitor',
+        message: trimmedMsg,
+        emoji,
+      }])
+      .select()
+      .single()
+
+    setSubmitting(false)
+
+    if (insertErr) {
+      setSubmitMsg({ type: 'error', text: 'Something went wrong — try again? ' + insertErr.message })
+    } else {
+      // Optimistic update — prepend immediately instead of waiting for real-time round-trip
+      setEntries(prev => [inserted, ...prev])
+      setName(''); setMsg('')
+      setSubmitMsg({ type: 'success', text: 'Note left ♡ thank you for passing through!' })
+    }
+
+    setTimeout(() => setSubmitMsg(null), 4000)
   }
 
   return (
