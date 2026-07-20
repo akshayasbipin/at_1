@@ -1,10 +1,26 @@
 import { useState } from 'react'
 import { useReveal } from '../hooks/useReveal.js'
 
-const SEED_ENTRIES = [
-  { name: 'a visitor ♡', msg: 'love the vibe of this corner of the internet!!', emoji: '🌸', time: 'just now' },
-  { name: 'anonymous friend', msg: 'the blog on Indian heroines was genuinely moving. more please!', emoji: '✨', time: 'earlier' },
-]
+// ── Supabase client (reads from .env.local) ───────────────────────────────────
+const supabaseUrl  = import.meta.env.VITE_SUPABASE_URL
+const supabaseKey  = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+// Only create client if env vars exist (prevents crash during local dev before setup)
+const supabase = supabaseUrl && supabaseKey
+  ? createClient(supabaseUrl, supabaseKey)
+  : null
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+const EMOJIS      = ['🌸', '✨', '🎨', '🌿', '♡', '✦', '🎀', '🍓', '🌙', '🦋']
+const MAX_NAME    = 40
+const MAX_MSG     = 300
+const PAGE_SIZE   = 10   // how many entries to load at once
+
+// Shown while Supabase isn't configured yet so the UI still looks nice
+// const PLACEHOLDER_ENTRIES = [
+//   { id: -1, name: 'a visitor ♡',      message: 'love the vibe of this corner of the internet!!',         emoji: '🌸', created_at: null },
+//   { id: -2, name: 'anonymous friend', message: 'the blog on Indian heroines was genuinely moving. more please!', emoji: '✨', created_at: null },
+// ]
 
 export default function GuestbookPage() {
   useReveal()
