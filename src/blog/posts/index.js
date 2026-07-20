@@ -1,5 +1,6 @@
 import postOneContent from './post-1.md?raw'
 import postTwoContent from './post-2.md?raw'
+import postThreeContent from './post-3.md?raw'
 
 export const BLOG_POSTS = [
   {
@@ -21,5 +22,15 @@ export const BLOG_POSTS = [
     date: 'Feb 14, 2026',
     read: '6 min read',
     content: postTwoContent,
+  },
+  {
+    id: 3,
+    slug: 'Drowning_in_Information_Starving_for_Wisdom',
+    cat: 'Youtube · Current Affairs',
+    title: 'Drowning in Information, Starving for Wisdom',
+    excerpt: 'Exploring the paradox of information overload and the quest for meaningful knowledge in the digital age.',
+    date: 'Jul 20, 2026',
+    read: '4 min read',
+    content: postThreeContent,
   },
 ]
