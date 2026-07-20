@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { useReveal } from '../hooks/useReveal.js'
 
+
 // ── Supabase client (reads from .env.local) ───────────────────────────────────
 const supabaseUrl  = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey  = import.meta.env.VITE_SUPABASE_ANON_KEY
