@@ -65,7 +65,7 @@ export default function GuestbookPage() {
   const fetchEntries = useCallback(async (reset = false) => {
     if (!supabase) {
       // No Supabase configured — show placeholder data
-      setEntries(PLACEHOLDER_ENTRIES)
+      // setEntries(PLACEHOLDER_ENTRIES)
       setLoading(false)
       return
     }
