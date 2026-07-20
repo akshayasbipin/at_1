@@ -18,10 +18,10 @@ const MAX_MSG     = 300
 const PAGE_SIZE   = 10   // how many entries to load at once
 
 // Shown while Supabase isn't configured yet so the UI still looks nice
-const PLACEHOLDER_ENTRIES = [
-  { id: -1, name: 'a visitor ♡',      message: 'love the vibe of this corner of the internet!!',         emoji: '🌸', created_at: null },
-  { id: -2, name: 'anonymous friend', message: 'the blog on Indian heroines was genuinely moving. more please!', emoji: '✨', created_at: null },
-]
+// const PLACEHOLDER_ENTRIES = [
+//   { id: -1, name: 'a visitor ♡',      message: 'love the vibe of this corner of the internet!!',         emoji: '🌸', created_at: null },
+//   { id: -2, name: 'anonymous friend', message: 'the blog on Indian heroines was genuinely moving. more please!', emoji: '✨', created_at: null },
+// ]
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function formatTime(iso) {
