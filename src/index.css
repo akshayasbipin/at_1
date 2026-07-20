@@ -110,7 +110,6 @@ body::before {
 .marquee-wrap {
   background: var(--terracotta);
   overflow: hidden; padding: 0.55rem 0; white-space: nowrap;
-  margin-top: -18px;
 }
 .marquee-inner {
   display: inline-flex; gap: 2rem;
@@ -168,10 +167,9 @@ body::before {
 
 /* ─── HERO ─── */
 .hero-section {
-  min-height: 100vh;
+  min-height: 100vh; padding-top: 60px;
   display: grid; grid-template-columns: 1.1fr 1fr;
   overflow: hidden; position: relative;
-  margin-top: -22px;
 }
 .hero-left {
   padding: 5rem 3rem 3rem 3.5rem;
@@ -194,20 +192,20 @@ body::before {
 .hero-sub {
   font-family: var(--font-body);
   font-size: 1.15rem; font-style: italic;
-  color: var(--brown-mid); margin-bottom: 1rem; line-height: 1.5;
+  color: var(--brown-mid); margin-bottom: 1.8rem; line-height: 1.5;
 }
 .hero-desc {
   font-size: 1.05rem; line-height: 1.75;
-  color: var(--brown-deep); max-width: 44ch; margin-bottom: 1rem;
+  color: var(--brown-deep); max-width: 44ch; margin-bottom: 2rem;
 }
 .hero-quote {
   font-family: var(--font-display);
   font-size: 1.1rem; color: var(--terracotta);
   border-left: 3px solid var(--dusty-rose);
-  padding-left: 1rem; margin-bottom: 1.5rem;
+  padding-left: 1rem; margin-bottom: 2rem;
   font-style: italic;
 }
-.hero-btns { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.hero-btns { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
 .social-row { display: flex; align-items: center; gap: 1rem; }
 .social-row p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--brown-mid); }
 .social-icon-link {
@@ -527,7 +525,7 @@ body::before {
   letter-spacing: 0.05em; color: var(--blush); margin-bottom: 0.3rem;
 }
 .mag-issue { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); margin-bottom: 1.5rem; }
-.mag-grid { gap: 0; margin-top: 2.5rem; }
+.mag-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; margin-top: 2.5rem; }
 .mag-feature {
   background: var(--cream-light); border: 1.5px solid var(--cream-warm);
   padding: 1.8rem; position: relative;
