@@ -53,14 +53,6 @@ export default function HomePage({ handleNavigate }) {
             </button>
             <a
               className="smv-btn"
-              href="https://www.instagram.com/shy_milkshake_void/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram
-            </a>
-            <a
-              className="smv-btn"
               href="https://shymilkshakevoid.my.canva.site" 
               target="_blank" 
               rel="noreferrer" 
@@ -78,6 +70,22 @@ export default function HomePage({ handleNavigate }) {
               rel="noreferrer"
             >
               <i className="ti ti-brand-instagram" /> @shy_milkshake_void
+            </a>
+            <a
+              className="social-icon-link"
+              href="https://pin.it/1RDtOSLZ9"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="ti ti-brand-pinterest" /> Pinterest
+            </a>
+            <a
+              className="social-icon-link"
+              href="https://www.tumblr.com/shymilkshakevoid1?source=share"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="ti ti-brand-tumblr" /> Tumblr
             </a>
           </div>
         </div>
