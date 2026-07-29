@@ -207,7 +207,7 @@ body::before {
   padding-left: 1rem; margin-bottom: 1.5rem;
   font-style: italic;
 }
-.hero-btns { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.hero-btns { display: flex; gap: 0.9rem; flex-wrap: wrap; }
 .social-row { display: flex; align-items: center; gap: 1rem; }
 .social-row p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--brown-mid); }
 .social-icon-link {
