@@ -33,7 +33,7 @@ export default function ConnectPage() {
             &quot;Let's Create Something Exceptional Together &lt;:&quot;
           </div>
           <p className="connect-manifesto">
-            whether you want to chat about <strong>AI agents</strong>, swap <strong>book recommendations</strong>,
+            whether you want to chat about <strong>stuff</strong>, swap <strong>book recommendations</strong>,
             admire <strong>art</strong>, or just say hi — find me on instagram or drop a note in the guestbook.
             <br />
             <br />
