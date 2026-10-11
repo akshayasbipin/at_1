@@ -5,6 +5,7 @@ const CONNECT_LINKS = [
   { icon: 'ti-brand-pinterest', label: 'Pinterest', sub: 'pin.it/1RDtOSLZ9', url: 'https://pin.it/1RDtOSLZ9' },
   { icon: 'ti-brand-tumblr', label: 'Tumblr', sub: 'shymilkshakevoid1', url: 'https://www.tumblr.com/shymilkshakevoid1?source=share' },
   { icon: 'ti-external-link', label: 'Canva Portfolio', sub: 'shymilkshakevoid.my.canva.site', url: 'https://shymilkshakevoid.my.canva.site' },
+  { icon: 'ti-brand-youtube', label: 'YouTube', sub: '@shyMilkshakeVoid', url: 'https://youtube.com/@shymilkshakevoid?si=0kXRdjnnc53HmXJS' }
 ]
 
 export default function ConnectPage() {
