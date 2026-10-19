@@ -1,6 +1,7 @@
 import postOneContent from './post-1.md?raw'
 import postTwoContent from './post-2.md?raw'
 import postThreeContent from './post-3.md?raw'
+import postFourContent from './post-4.md?raw'
 
 export const BLOG_POSTS = [
   {
@@ -32,5 +33,15 @@ export const BLOG_POSTS = [
     date: 'Jul 20, 2026',
     read: '4 min read',
     content: postThreeContent,
+  },
+  {
+  id: 4,
+  slug: 'i-let-my-hormones-run-my-to-do-list',
+  cat: 'Projects · Build Log',
+  title: 'I Let My Hormones Run My To-Do List and They’re a Better Manager Than Me',
+  excerpt: 'I built a free planner that reads my cycle from Google Calendar and picks my tasks to match my energy. No AI survived. Regex did all the work.',
+  date: 'Oct 19, 2026',
+  read: '4 min read',
+  content: postFourContent,
   },
 ]
