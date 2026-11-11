@@ -251,7 +251,7 @@ export default function GuestbookPage() {
               rows={4}
               value={msg}
               onChange={e => setMsg(e.target.value)}
-              placeholder="leave a thought, a hello, a poem..."
+              placeholder="leave a thought, a hello, a song you like, an article, a poem..."
               maxLength={MAX_MSG}
             />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: msg.length > MAX_MSG * 0.9 ? 'var(--terracotta)' : 'var(--sand)', alignSelf: 'flex-end' }}>
