@@ -42,21 +42,20 @@ export default function HomePage({ handleNavigate }) {
           </p>
           <p className="hero-quote">"Growth is growth, no matter how small"</p>
           <div className="hero-btns">
-            <button className="smv-btn filled" onClick={() => navigate('/gallery')}>
+            {/* <button className="smv-btn filled" onClick={() => navigate('/gallery')}>
               See My Art
-            </button>
-            <button className="smv-btn" onClick={() => navigate('/blog')}>
+            </button> */}
+            <button className="smv-btn hero-primary-action" onClick={() => navigate('/blog')}>
               Read Blogs 
             </button>
-            <button className="smv-btn" onClick={() => navigate('/magazine')}>
-              Open Zine ↗
+            <button className="smv-btn hero-primary-action" onClick={() => navigate('/games')}>
+              🎮 Play Games
             </button>
             <a
               className="smv-btn"
               href="https://shymilkshakevoid.my.canva.site" 
               target="_blank" 
               rel="noreferrer" 
-              style={{ marginBottom: '2rem', display: 'inline-block' }}
             >
               Portfolio on Canva ↗
             </a>
