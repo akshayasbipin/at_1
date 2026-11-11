@@ -3,14 +3,15 @@ import { useLocation } from 'react-router-dom'
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', path: '/' },
-  { id: 'gallery', label: 'Gallery', path: '/gallery' },
+  // { id: 'gallery', label: 'Gallery', path: '/gallery' },
   // { id: 'sketchbook', label: 'SketchBook', path: '/sketchbook' },
+  // { id: 'thoughtbook', label: 'Thought Book', path: '/thoughtbook' },
   { id: 'blog', label: 'Blog', path: '/blog' },
+  { id: 'games', label: 'Games', path: '/games' },
   { id: 'guestbook', label: 'Guestbook', path: '/guestbook' },
   { id: 'radio', label: 'Radio', path: '/radio' },
   { id: 'polaroids', label: 'Polaroids', path: '/polaroids' },
   { id: 'magazine', label: 'Magazine', path: '/magazine' },
-  { id: 'thoughtbook', label: 'Thought Book', path: '/thoughtbook' },
   { id: 'connect', label: 'Connect', path: '/connect' },
 ]
 
@@ -37,7 +38,7 @@ export function Nav({ handleNavigate }) {
       >
         shy<span>Milkshake</span>Void
       </a>
-      <ul className={`smv-nav-links${open ? ' open' : ''}`}>
+      <ul id="primary-navigation" className={`smv-nav-links${open ? ' open' : ''}`}>
         {NAV_ITEMS.map((item) => (
           <li key={item.id}>
             <button
@@ -52,7 +53,14 @@ export function Nav({ handleNavigate }) {
           </li>
         ))}
       </ul>
-      <button className="smv-hamburger" aria-label="menu" onClick={() => setOpen((prev) => !prev)}>
+      <button
+        className="smv-hamburger"
+        type="button"
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-expanded={open}
+        aria-controls="primary-navigation"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <span />
         <span />
         <span />

@@ -1,15 +1,16 @@
 ﻿import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Cursor, Nav, StickyNote } from './components'
 import HomePage from './pages/HomePage.jsx'
-import GalleryPage from './pages/GalleryPage.jsx'
+// import GalleryPage from './pages/GalleryPage.jsx'
 // import SketchbookPage from './pages/SketchbookPage.jsx'
+// import ThoughtBookPage from './pages/ThoughtBookPage.jsx'
 import BlogPage from './pages/BlogPage.jsx'
 import GuestbookPage from './pages/GuestbookPage.jsx'
 import RadioPage from './pages/RadioPage.jsx'
 import PolaroidsPage from './pages/PolaroidsPage.jsx'
 import MagazinePage from './pages/MagazinePage.jsx'
-import ThoughtBookPage from './pages/ThoughtBookPage.jsx'
 import ConnectPage from './pages/ConnectPage.jsx'
+import GamesPage from './pages/GamesPage.jsx'
 
 export default function App() {
   const navigate = useNavigate()
@@ -27,16 +28,17 @@ export default function App() {
       <main style={{ minHeight: '100vh' }}>
         <Routes>
           <Route path="/" element={<HomePage handleNavigate={handleNavigate} />} />
-          <Route path="/gallery" element={<GalleryPage />} />
+          {/* <Route path="/gallery" element={<GalleryPage />} /> */}
           {/* <Route path="/sketchbook" element={<SketchbookPage />} /> */}
+          {/* <Route path="/thoughtbook" element={<ThoughtBookPage />} /> */}
           <Route path="/blog" element={<BlogPage handleNavigate={handleNavigate} />} />
           <Route path="/blog/:id" element={<BlogPage handleNavigate={handleNavigate} />} />
           <Route path="/guestbook" element={<GuestbookPage />} />
           <Route path="/radio" element={<RadioPage />} />
           <Route path="/polaroids" element={<PolaroidsPage />} />
           <Route path="/magazine" element={<MagazinePage />} />
-          <Route path="/thoughtbook" element={<ThoughtBookPage />} />
           <Route path="/connect" element={<ConnectPage />} />
+          <Route path="/games" element={<GamesPage />} />
         </Routes>
       </main>
       <footer className="smv-footer">
