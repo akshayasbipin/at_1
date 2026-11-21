@@ -45,10 +45,10 @@ export default function HomePage({ handleNavigate }) {
             {/* <button className="smv-btn filled" onClick={() => navigate('/gallery')}>
               See My Art
             </button> */}
-            <button className="smv-btn hero-primary-action" onClick={() => navigate('/blog')}>
+            <button className="smv-btn hero-primary-action blog-action" onClick={() => navigate('/blog')}>
               Read Blogs 
             </button>
-            <button className="smv-btn hero-primary-action" onClick={() => navigate('/games')}>
+            <button className="smv-btn hero-primary-action games-action" onClick={() => navigate('/games')}>
               🎮 Play Games
             </button>
             <a
@@ -58,33 +58,6 @@ export default function HomePage({ handleNavigate }) {
               rel="noreferrer" 
             >
               Portfolio on Canva ↗
-            </a>
-          </div>
-          <div className="social-row">
-            <p>find me at:</p>
-            <a
-              className="social-icon-link"
-              href="https://www.instagram.com/shy_milkshake_void/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="ti ti-brand-instagram" /> @shy_milkshake_void
-            </a>
-            <a
-              className="social-icon-link"
-              href="https://pin.it/1RDtOSLZ9"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="ti ti-brand-pinterest" /> Pinterest
-            </a>
-            <a
-              className="social-icon-link"
-              href="https://www.tumblr.com/shymilkshakevoid1?source=share"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="ti ti-brand-tumblr" /> Tumblr
             </a>
           </div>
         </div>
@@ -119,6 +92,34 @@ export default function HomePage({ handleNavigate }) {
               <img src={photoUrl4} alt="GalleryDump🪨" />
             </div>
           </div>
+        </div>
+
+        <div className="social-row">
+          <p>find me at:</p>
+          <a
+            className="social-icon-link"
+            href="https://www.instagram.com/shy_milkshake_void/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ti ti-brand-instagram" /> @shy_milkshake_void
+          </a>
+          <a
+            className="social-icon-link"
+            href="https://pin.it/1RDtOSLZ9"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ti ti-brand-pinterest" /> Pinterest
+          </a>
+          <a
+            className="social-icon-link"
+            href="https://www.tumblr.com/shymilkshakevoid1?source=share"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ti ti-brand-tumblr" /> Tumblr
+          </a>
         </div>
       </section>
 

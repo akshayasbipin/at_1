@@ -183,10 +183,13 @@ body::before {
 .hero-section {
   min-height: 100vh;
   display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-areas: "intro photos" "social photos";
+  grid-template-rows: 1fr auto;
   overflow: hidden; position: relative;
   margin-top: -22px;
 }
 .hero-left {
+  grid-area: intro;
   padding: 5rem 3rem 3rem 3.5rem;
   display: flex; flex-direction: column; justify-content: center;
   position: relative; z-index: 2; min-width: 0;
@@ -226,7 +229,19 @@ body::before {
   display: inline-flex; align-items: center; justify-content: center;
   text-align: center;
 }
-.social-row { display: flex; align-items: center; gap: 1rem; }
+.hero-primary-action.blog-action {
+  background: var(--terracotta); border-color: var(--terracotta); color: var(--cream-light);
+}
+.hero-primary-action.blog-action:hover { background: var(--brown-deep); border-color: var(--brown-deep); }
+.hero-primary-action.games-action {
+  background: var(--sage); border-color: var(--sage); color: var(--cream-light);
+}
+.hero-primary-action.games-action:hover { background: var(--dusty-rose); border-color: var(--dusty-rose); }
+.social-row {
+  grid-area: social; padding: 0 0 3rem 3.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  position: relative; z-index: 2;
+}
 .social-row p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--brown-mid); }
 .social-icon-link {
   font-family: var(--font-mono); font-size: 0.75rem;
@@ -239,6 +254,7 @@ body::before {
 .social-icon-link i { font-size: 1.1rem; }
 
 .hero-right {
+  grid-area: photos;
   position: relative; display: flex; align-items: center;
   justify-content: center; padding: 3rem; overflow: hidden;
 }
@@ -682,10 +698,16 @@ body::before {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
-  .hero-section { grid-template-columns: 1fr; }
-  .hero-left { padding: 5rem 1.5rem 2.5rem; }
+  .hero-section {
+    grid-template-columns: 1fr;
+    grid-template-areas: "intro" "photos" "social";
+    grid-template-rows: auto auto auto;
+  }
+  .hero-left { padding: 5rem 1.5rem 1rem; }
   .hero-eyebrow, .social-row { flex-wrap: wrap; }
-  .hero-right { display: none; }
+  .hero-right { display: flex; padding: 0 1.5rem 1rem; }
+  .hero-photo-grid { height: auto; aspect-ratio: 1; }
+  .social-row { padding: 0 1.5rem 2.5rem; }
   .sticky-note { display: none; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .sketchbook-grid { grid-template-columns: 1fr 1fr; }
@@ -696,7 +718,7 @@ body::before {
   .smv-section { padding: 3.5rem 1.2rem; }
 }
 @media (max-width: 560px) {
-  .hero-left { padding: 5rem 1.25rem 2.5rem; }
+  .hero-left { padding: 5rem 1.25rem 1rem; }
   .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.1em; flex-wrap: wrap; }
   .hero-h1 { font-size: clamp(2.6rem, 12vw, 3.5rem); overflow-wrap: anywhere; }
   .hero-desc, .hero-quote { overflow-wrap: anywhere; }
