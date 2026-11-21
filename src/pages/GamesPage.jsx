@@ -1,45 +1,35 @@
-import snakesAndLaddersIcon from '../icons/snakes_and_ladders.png'
-import wordsAreHardIcon from '../icons/words_are_hard.png'
-import guessMyCodeIcon from '../icons/crack-the-code.webp'
-import pictureGameIcon from '../icons/picture_game.png'
-
 const GAME_HUB_URL = 'https://gameplay-dashboard.netlify.app/'
-
-const GAMES = [
-  { icon: snakesAndLaddersIcon, title: 'Snakes and Ladders', kind: 'A classic board-game race' },
-  { icon: wordsAreHardIcon, title: 'Words Are Hard', kind: 'guess a word that starts with the same letter as the emoji' },
-  { icon: guessMyCodeIcon, title: 'Guess My Code', kind: 'code-breaking game, guess who breaks the code first' },
-  { icon: pictureGameIcon, title: 'Picture Game', kind: 'A multiplayer picture challenge' },
-]
 
 export default function GamesPage() {
   return (
     <div className="smv-section games-page">
-      <div className="section-tag">press play</div>
-      <h1 className="section-title">A little <span>game time</span></h1>
-      <p className="games-intro">
-        Pick a game in the hub. No account needed to try it as a guest. DW there are single player games as well
-      </p>
+      <header className="games-heading">
+        <div className="section-tag">press play</div>
+        <h1 className="games-title">
+          <span>My game</span>
+          <span>collection</span>
+        </h1>
+        <p className="games-intro">
+          A little collection of games I keep coming back to. Hope you find one you enjoy!
+        </p>
+      </header>
 
-      <div className="games-grid">
-        {GAMES.map((game) => (
-          <article className="game-tile" key={game.title}>
-            <img className="game-icon" src={game.icon} alt="" />
-            <h2>{game.title}</h2>
-            <p>{game.kind}</p>
-          </article>
-        ))}
-      </div>
-
-      <div className="games-entry">
-        <span className="games-entry-icon" aria-hidden="true">🕹️</span>
-        <div>
-          <h2>Jump in as a guest</h2>
-          <p>Choose Play as Guest in the hub, enter a display name, and pick a game. No sign-up needed.</p>
+      <div className="games-hero">
+        <div className="games-character-stage">
+          <img
+            className="games-character"
+            src="/game_page_gif.gif"
+            alt="Animated drawing of a person sitting with a playful pose"
+          />
         </div>
-        <a className="smv-btn filled" href={GAME_HUB_URL} target="_blank" rel="noreferrer">
-          Play as Guest ↗
-        </a>
+        <div className="games-platform">
+          <span className="games-platform-label">Ready when you are</span>
+          <a className="games-start-button" href={GAME_HUB_URL} target="_blank" rel="noreferrer">
+            <span>Play as guest</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p className="games-footnote">Pick a game in the hub. No sign-up needed to try it as a guest.</p>
       </div>
     </div>
   )
