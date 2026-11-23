@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   // { id: 'sketchbook', label: 'SketchBook', path: '/sketchbook' },
   // { id: 'thoughtbook', label: 'Thought Book', path: '/thoughtbook' },
   { id: 'blog', label: 'Blog', path: '/blog' },
+  { id: 'books', label: 'Books', path: '/books' },
   { id: 'games', label: 'Games', path: '/games' },
   { id: 'guestbook', label: 'Guestbook', path: '/guestbook' },
   { id: 'radio', label: 'Radio', path: '/radio' },
