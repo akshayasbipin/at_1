@@ -452,6 +452,109 @@ body::before {
 .blog-more::after { content: '→'; display: inline-block; transition: transform 0.2s; }
 .blog-card:hover .blog-more::after { transform: translateX(4px); }
 
+/* ─── BOOKSHELF ─── */
+.books-page { padding-top: 4.5rem; }
+.books-intro {
+  max-width: 58ch; margin-bottom: 1.8rem;
+  color: var(--brown-mid); font-size: 1.05rem; line-height: 1.7;
+}
+.books-toolbar {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin: 0 0 1.5rem; flex-wrap: wrap;
+}
+.books-search-label {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--brown-mid); text-transform: uppercase;
+}
+.books-search {
+  width: min(100%, 320px); min-height: 42px; padding: 0.6rem 0.75rem;
+  border: 1px solid var(--cream-warm); background: var(--cream-light);
+  color: var(--brown-deep); font: 0.95rem var(--font-body); outline: none;
+}
+.books-search:focus { border-color: var(--terracotta); }
+.books-count { margin-left: auto; color: var(--sand); font: 0.72rem var(--font-mono); }
+.books-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  gap: 1rem; align-items: stretch;
+}
+.book-card {
+  display: flex; flex-direction: column; min-width: 0; overflow: hidden;
+  border: 1px solid var(--cream-warm); background: var(--cream-light);
+  color: var(--brown-deep); text-align: left; cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.book-card:hover, .book-card:focus-visible {
+  transform: translateY(-3px); border-color: var(--sand);
+  box-shadow: 3px 4px 0 rgba(196,132,90,0.22);
+}
+.book-card:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+.book-cover-frame {
+  display: flex; justify-content: center; align-items: center; overflow: hidden;
+  aspect-ratio: 4 / 3; padding: 0.75rem; background: var(--cream-warm);
+}
+.book-cover {
+  display: block; max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain;
+}
+.book-cover-placeholder, .book-dialog-cover-placeholder {
+  color: var(--brown-mid); font: italic 0.95rem/1.5 var(--font-body); text-align: center;
+}
+.book-card-info {
+  display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 0.35rem;
+  padding: 0.85rem 0.9rem 1rem;
+}
+.book-card-title { font: 600 1.08rem/1.35 var(--font-body); overflow-wrap: anywhere; }
+.book-card-author { color: var(--brown-mid); font: 0.88rem/1.4 var(--font-body); }
+.book-status {
+  margin-top: 0.25rem; padding: 0.15rem 0.45rem; border-radius: 2px;
+  background: rgba(122,140,90,0.16); color: var(--sage); font: 0.65rem var(--font-mono);
+}
+.books-empty { padding: 2rem 0; color: var(--brown-mid); font: italic 1rem var(--font-body); }
+.book-dialog-backdrop {
+  position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center;
+  padding: 1.25rem; background: rgba(31,27,24,0.68); backdrop-filter: blur(3px);
+}
+.book-dialog {
+  position: relative; display: grid; grid-template-columns: minmax(210px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.25rem, 4vw, 3rem); width: min(100%, 850px); max-height: min(88vh, 760px);
+  overflow: auto; padding: clamp(1.25rem, 4vw, 2.5rem); background: var(--paper);
+  border: 1px solid var(--cream-warm); box-shadow: 8px 8px 0 rgba(61,43,31,0.2);
+}
+.book-dialog-close {
+  position: absolute; top: 0.6rem; right: 0.75rem; z-index: 1;
+  width: 40px; height: 40px; border: 0; background: transparent;
+  color: var(--brown-deep); font: 2rem/1 var(--font-body); cursor: pointer;
+}
+.book-dialog-close:focus-visible { outline: 2px solid var(--terracotta); }
+.book-dialog-cover-wrap {
+  display: flex; min-height: 260px; align-items: flex-start; justify-content: center;
+  padding: 0.75rem; background: var(--cream-warm);
+}
+.book-dialog-cover {
+  display: block; width: auto; height: auto; max-width: 100%; max-height: 58vh;
+  object-fit: contain;
+}
+.book-dialog-cover-placeholder { align-self: center; }
+.book-dialog-content { min-width: 0; padding-top: 0.2rem; }
+.book-dialog-title {
+  margin: 0.15rem 2rem 1.2rem 0; color: var(--brown-deep);
+  font: 600 clamp(1.55rem, 3vw, 2.25rem)/1.2 var(--font-body); overflow-wrap: anywhere;
+}
+.book-details { display: grid; gap: 0.55rem; margin-bottom: 1.4rem; }
+.book-detail-row { display: grid; grid-template-columns: minmax(90px, 0.7fr) minmax(0, 1.3fr); gap: 0.7rem; }
+.book-detail-row dt { color: var(--brown-mid); font: 0.72rem var(--font-mono); }
+.book-detail-row dd { color: var(--brown-deep); font: 0.95rem/1.45 var(--font-body); overflow-wrap: anywhere; }
+.book-long-description, .book-note {
+  margin-top: 1.15rem; padding-top: 1rem; border-top: 1px solid var(--cream-warm);
+}
+.book-long-description h3, .book-note h3 { margin-bottom: 0.4rem; color: var(--terracotta); font: 0.7rem var(--font-mono); text-transform: uppercase; }
+.book-long-description p, .book-note p {
+  color: var(--brown-deep); font: 1rem/1.7 var(--font-body);
+  overflow-wrap: anywhere; white-space: pre-line;
+}
+.book-external-link { display: inline-block; margin-top: 1.2rem; color: var(--terracotta); font: 0.85rem var(--font-mono); }
+.book-external-link:hover { color: var(--brown-deep); }
+
 /* ─── GAMES ─── */
 .games-page { max-width: 1100px; padding-top: 3.5rem; padding-bottom: 4rem; }
 .games-heading { text-align: center; }
@@ -718,6 +821,15 @@ body::before {
   .smv-section { padding: 3.5rem 1.2rem; }
 }
 @media (max-width: 560px) {
+  .books-page { padding-top: 3.5rem; }
+  .books-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+  .book-card-info { padding: 0.7rem; }
+  .book-card-title { font-size: 1rem; }
+  .book-dialog-backdrop { padding: 0.65rem; }
+  .book-dialog { grid-template-columns: minmax(0, 1fr); gap: 1rem; max-height: 92vh; padding: 1rem; }
+  .book-dialog-cover-wrap { min-height: 180px; max-height: 34vh; }
+  .book-dialog-cover { max-height: 32vh; }
+  .book-dialog-content .section-tag { margin-bottom: 0.4rem; }
   .hero-left { padding: 5rem 1.25rem 1rem; }
   .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.1em; flex-wrap: wrap; }
   .hero-h1 { font-size: clamp(2.6rem, 12vw, 3.5rem); overflow-wrap: anywhere; }

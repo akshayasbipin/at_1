@@ -11,6 +11,7 @@ import PolaroidsPage from './pages/PolaroidsPage.jsx'
 import MagazinePage from './pages/MagazinePage.jsx'
 import ConnectPage from './pages/ConnectPage.jsx'
 import GamesPage from './pages/GamesPage.jsx'
+import BooksPage from './pages/BooksPage.jsx'
 
 export default function App() {
   const navigate = useNavigate()
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/magazine" element={<MagazinePage />} />
           <Route path="/connect" element={<ConnectPage />} />
           <Route path="/games" element={<GamesPage />} />
+          <Route path="/books" element={<BooksPage />} />
         </Routes>
       </main>
       <footer className="smv-footer">
